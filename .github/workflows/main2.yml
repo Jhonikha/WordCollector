@@ -21,9 +21,10 @@ jobs:
         curl -L "https://github.com/gradle/gradle/raw/v8.1.0/gradle/wrapper/gradle-wrapper.jar" \
           -o gradle/wrapper/gradle-wrapper.jar
         chmod +x gradlew
+        chmod +x gradle/wrapper/gradle-wrapper.jar
 
     - name: Build Debug APK
-      run: ./gradlew assembleDebug --stacktrace
+      run: java -jar gradle/wrapper/gradle-wrapper.jar assembleDebug --stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
