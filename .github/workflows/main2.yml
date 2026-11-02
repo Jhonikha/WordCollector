@@ -15,8 +15,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: chmod gradlew
-      run: chmod +x gradlew
+    - name: Download Gradle wrapper jar
+      run: |
+        mkdir -p gradle/wrapper
+        curl -L "https://github.com/gradle/gradle/raw/v8.1.0/gradle/wrapper/gradle-wrapper.jar" \
+          -o gradle/wrapper/gradle-wrapper.jar
+        chmod +x gradlew
 
     - name: Build Debug APK
       run: ./gradlew assembleDebug --stacktrace
